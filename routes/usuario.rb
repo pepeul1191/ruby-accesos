@@ -43,6 +43,14 @@ class MyApp < Sinatra::Base
 		rpta.to_s
   end
 
+  post '/usuario/contrasenia_repetida' do
+    data = JSON.parse(params[:data])
+    usuario_id = data['id']
+    contrasenia = data['contrasenia']
+    rpta = Usuario.where(:contrasenia => contrasenia, :id => usuario_id).count
+    rpta.to_s
+  end
+
   post '/usuario/correo_repetido' do
     data = JSON.parse(params[:data])
     usuario_id = data['id']
